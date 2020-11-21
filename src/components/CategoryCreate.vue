@@ -33,7 +33,7 @@
             class="helper-text invalid"
             v-if="$v.limit.$dirty && !$v.limit.minValue"
           >
-            Минимальное значение {{$v.limit.$params.minValue.min}}
+            Минимальное значение {{ $v.limit.$params.minValue.min }}
           </span>
         </div>
 
@@ -58,27 +58,26 @@ export default {
     limit: { minValue: minValue(100) }
   },
   mounted() {
-   // M.updateTextFields();
+    // M.updateTextFields();
   },
   methods: {
-   async submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
       }
       try {
-      const category =  await this.$store.dispatch('createCategory' , {
+        const category = await this.$store.dispatch("createCategory", {
           title: this.title,
           limit: this.limit
-      })
-      this.title = ''
-      this.limit = 100
-      this.$v.$reset()
-      this.$message('Категория была создана')
-       this.$emit('created', category)
-      }
-      catch (e) {
-        console.log(e)
+        });
+        this.title = "";
+        this.limit = 100;
+        this.$v.$reset();
+        this.$message("Категория была создана");
+        this.$emit("created", category);
+      } catch (e) {
+        console.log(e);
       }
     }
   }
