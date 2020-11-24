@@ -8,13 +8,12 @@
       <div class="row" v-else>
         <CategoryCreate @created="addNewCategory" />
         <CategoryModify
-        v-if="categories.length"
-         :categories="categories" 
-         @updated="updateCategories"
-         :key="categories.length + updateCount"
-
-         />
-         <p class="center" v-else>Категорий пока нет </p>
+          v-if="categories.length"
+          :categories="categories"
+          @updated="updateCategories"
+          :key="categories.length + updateCount"
+        />
+        <p class="center" v-else>Категорий пока нет</p>
       </div>
     </section>
   </div>
@@ -39,16 +38,16 @@ export default {
       this.categories.push(category);
     },
     updateCategories(category) {
-      const idx = this.categories.findIndex( c => c.id=== category.id)
-      this.categories[idx].title = category.title
-      this.categories[idx].limit = category.limit
-       this.updateCount++
-  }
+      const idx = this.categories.findIndex(c => c.id === category.id);
+      this.categories[idx].title = category.title;
+      this.categories[idx].limit = category.limit;
+      this.updateCount++;
+    }
   },
   components: {
     CategoryCreate,
     CategoryModify,
     Loader
-  },
+  }
 };
 </script>
