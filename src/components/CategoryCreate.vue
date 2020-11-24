@@ -9,6 +9,7 @@
         <div class="input-field">
           <input
             id="name"
+            
             type="text"
             v-model="title"
             :class="{ invalid: $v.title.$dirty && !$v.title.required }"
