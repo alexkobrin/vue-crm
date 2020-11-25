@@ -27,10 +27,11 @@ export default {
           (
             await firebase
               .database()
-              .ref(`/users/${uid}/categories`).child(id)
+              .ref(`/users/${uid}/categories`)
+              .child(id)
               .once("value")
           ).val() || {};
-        return {...categorie, id} 
+        return { ...categorie, id };
       } catch (e) {
         commit("setError", e);
         throw e;

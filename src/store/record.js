@@ -1,19 +1,22 @@
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 export default {
-    actions: {
-         async createRecord({dispatch, commit} , record) {
-            try {
-                const uid = await dispatch('getUid')
-               return await firebase.database().ref(`/users/${uid}/record`).push(record)
-            } catch(e) {
-                commit('setError' , e)
-                throw e
-            }
-        },
-        async fetchRecords ({dispatch, commit}) {
-            try {
-                const uid = await dispatch("getUid");
-           const records =
+  actions: {
+    async createRecord({ dispatch, commit }, record) {
+      try {
+        const uid = await dispatch("getUid");
+        return await firebase
+          .database()
+          .ref(`/users/${uid}/record`)
+          .push(record);
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
+    },
+    async fetchRecords({ dispatch, commit }) {
+      try {
+        const uid = await dispatch("getUid");
+        const records =
           (
             await firebase
               .database()
@@ -24,27 +27,27 @@ export default {
           ...records[key],
           id: key
         }));
-
-            }catch(e) {
-                commit('setError' , e)
-                throw e
-            }
-        },
-        async fetchRecordById ({dispatch, commit} , id) {
-            try {
-                const uid = await dispatch("getUid");
-           const record =
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
+    },
+    async fetchRecordById({ dispatch, commit }, id) {
+      try {
+        const uid = await dispatch("getUid");
+        const record =
           (
             await firebase
               .database()
               .ref(`/users/${uid}/record`)
-              .child(id).once("value")
+              .child(id)
+              .once("value")
           ).val() || {};
-        return {...record , id}
-        }catch(e) {
-        commit('setError' , e)
-        throw e
-        }
-     }            
+        return { ...record, id };
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
     }
-}
+  }
+};

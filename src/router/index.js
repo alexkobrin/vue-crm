@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 
 Vue.use(VueRouter);
 
@@ -8,7 +8,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    meta: { layout: "main" , auth: true},
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Home.vue")
   },
   {
@@ -26,31 +26,31 @@ const routes = [
   {
     path: "/detail-record/:id",
     name: "detail-record",
-    meta: { layout: "main" , auth: true },
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Detail-record.vue")
   },
   {
     path: "/history",
     name: "history",
-    meta: { layout: "main",  auth: true },
+    meta: { layout: "main", auth: true },
     component: () => import("../views/History.vue")
   },
   {
     path: "/planning",
     name: "planning",
-    meta: { layout: "main" , auth: true},
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Planning.vue")
   },
   {
     path: "/profile",
     name: "profile",
-    meta: { layout: "main" , auth: true },
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Profile.vue")
   },
   {
     path: "/record",
     name: "record",
-    meta: { layout: "main" , auth: true},
+    meta: { layout: "main", auth: true },
     component: () => import("../views/Record.vue")
   },
   {
@@ -67,16 +67,15 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to ,from ,next)=> {
-  const currentUser = firebase.auth().currentUser
-  const requiredAuth = to.matched.some(record => record.meta.auth)
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requiredAuth = to.matched.some(record => record.meta.auth);
 
- if(requiredAuth && !currentUser) {
-   next('/login?message=login')
- } else {
-   next()
- }
-
-})
+  if (requiredAuth && !currentUser) {
+    next("/login?message=login");
+  } else {
+    next();
+  }
+});
 
 export default router;
