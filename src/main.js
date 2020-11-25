@@ -3,7 +3,10 @@ import Vuelidate from "vuelidate";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import VueMeta from 'vue-meta'
 import dateFilter from "./filters/date.filters";
+
+import titlePlagin from "./utils/title.plagin";
 import currencyFilter from "./filters/currency.filter";
 import localizeFilter from "./filters/localize.filter";
 
@@ -23,6 +26,8 @@ Vue.config.productionTip = false;
 
 Vue.use(messagePlagin);
 Vue.use(Vuelidate);
+Vue.use(VueMeta);
+Vue.use(titlePlagin);
 Vue.filter("date", dateFilter);
 Vue.filter("localize", localizeFilter);
 Vue.filter("currency", currencyFilter);
