@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/vue-crm/'
+    publicPath: 'https://alexkobrin.github.io/vue-crm/'
     }
