@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.73591e113bf2db33bd4bb2531b18ed4b.js"
+  "/precache-manifest.5d4661564f60ea775754064e0633b5cb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vuecrm"});
